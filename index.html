@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sunhaus & Co — Tecnología que hace crecer</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #F4C430;
+    --gold-dark: #D4A820;
+    --gold-light: #FDEEA0;
+    --black: #1E1E1E;
+    --cream: #F5F2EC;
+    --gray: #6B6B6B;
+    --gray-light: #EBEBEB;
+    --white: #FFFFFF;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--cream);
+    color: var(--black);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 5%;
+    background: rgba(245,242,236,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(30,30,30,0.08);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo svg { width: 36px; height: 36px; }
+
+  .nav-logo-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1rem;
+    color: var(--black);
+    letter-spacing: 0.04em;
+  }
+
+  .nav-logo-text span { color: var(--gold-dark); }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold-dark); }
+
+  .nav-cta {
+    background: var(--black);
+    color: var(--gold) !important;
+    padding: 0.55rem 1.3rem;
+    border-radius: 2px;
+    font-size: 0.78rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.15s !important;
+  }
+
+  .nav-cta:hover { background: var(--gold) !important; color: var(--black) !important; transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 0 5%;
+    padding-top: 80px;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 55vw;
+    height: 55vw;
+    background: radial-gradient(circle, rgba(244,196,48,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-label::before {
+    content: '';
+    width: 28px; height: 2px;
+    background: var(--gold);
+    display: inline-block;
+  }
+
+  .hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.8rem, 4.5vw, 4rem);
+    line-height: 1.05;
+    color: var(--black);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--gold-dark);
+    position: relative;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--gray);
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 1rem 2.2rem;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+  }
+
+  .btn-primary:hover { background: var(--gold-dark); transform: translateY(-2px); }
+
+  .btn-ghost {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--black);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border-bottom: 1.5px solid var(--black);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--gold-dark); border-color: var(--gold-dark); }
+
+  /* Hero visual */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .logo-hero {
+    width: min(420px, 42vw);
+    animation: float 5s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+  }
+
+  /* ── STATS BAND ── */
+  .stats-band {
+    background: var(--black);
+    padding: 2.5rem 5%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-number {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 2.2rem;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-top: 0.4rem;
+  }
+
+  /* ── SERVICES ── */
+  .services {
+    padding: 7rem 5%;
+    background: var(--cream);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--black);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: rgba(30,30,30,0.12);
+    border: 1.5px solid rgba(30,30,30,0.12);
+  }
+
+  .service-card {
+    background: var(--cream);
+    padding: 3rem 2.5rem;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+
+  .service-card:hover { background: var(--white); }
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .service-icon {
+    width: 52px; height: 52px;
+    background: var(--gold);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.8rem;
+  }
+
+  .service-icon svg { width: 26px; height: 26px; }
+
+  .service-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    margin-bottom: 0.8rem;
+    letter-spacing: -0.01em;
+  }
+
+  .service-card p {
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: var(--gray);
+  }
+
+  .service-list {
+    list-style: none;
+    margin-top: 1.2rem;
+  }
+
+  .service-list li {
+    font-size: 0.82rem;
+    color: var(--gray);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid rgba(30,30,30,0.07);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .service-list li::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── HOW IT WORKS ── */
+  .process {
+    padding: 7rem 5%;
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .process .section-title { color: var(--white); }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 4rem;
+    position: relative;
+  }
+
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold) 0%, rgba(244,196,48,0.2) 100%);
+  }
+
+  .step {
+    padding: 0 1.5rem;
+    text-align: center;
+  }
+
+  .step-num {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.6rem;
+    color: var(--white);
+  }
+
+  .step p {
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ── ABOUT / VALUES ── */
+  .about {
+    padding: 7rem 5%;
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .about-text h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-text p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--gray);
+    margin-bottom: 1rem;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .value-card {
+    background: var(--white);
+    border: 1px solid rgba(30,30,30,0.08);
+    padding: 1.8rem 1.5rem;
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .value-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--gold);
+  }
+
+  .value-card h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+  }
+
+  .value-card p {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--gray);
+    margin: 0;
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 7rem 5%;
+    background: var(--gold);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before,
+  .cta-section::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(30,30,30,0.06);
+  }
+
+  .cta-section::before { width: 400px; height: 400px; top: -150px; left: -100px; }
+  .cta-section::after { width: 300px; height: 300px; bottom: -120px; right: -80px; }
+
+  .cta-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--black);
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-section p {
+    font-size: 1rem;
+    color: rgba(30,30,30,0.7);
+    max-width: 480px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-dark {
+    background: var(--black);
+    color: var(--gold);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 1.1rem 2.8rem;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.2s, opacity 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-dark:hover { opacity: 0.88; transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black);
+    padding: 4rem 5% 2.5rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .footer-brand p {
+    font-size: 0.85rem;
+    line-height: 1.75;
+    margin-top: 1rem;
+    max-width: 300px;
+  }
+
+  .footer-col h5 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 1.2rem;
+  }
+
+  .footer-col a {
+    display: block;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    margin-bottom: 0.6rem;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+  }
+
+  .footer-logo-text {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: var(--white);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-logo-text span { color: var(--gold); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; text-align: center; padding-top: 100px; }
+    .hero-sub { margin: 0 auto 2.5rem; }
+    .hero-actions { justify-content: center; }
+    .logo-hero { width: min(300px, 70vw); }
+    .hero::before { display: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .process-steps::before { display: none; }
+    .about { grid-template-columns: 1fr; gap: 3rem; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .process-steps { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Petals -->
+      <ellipse cx="30" cy="14" rx="6" ry="11" fill="#F4C430" transform="rotate(0 30 30) translate(0 -16)"/>
+      <ellipse cx="30" cy="14" rx="6" ry="11" fill="#F4C430" transform="rotate(45 30 30) translate(0 -16)"/>
+      <ellipse cx="30" cy="14" rx="6" ry="11" fill="#F4C430" transform="rotate(90 30 30) translate(0 -16)"/>
+      <ellipse cx="30" cy="14" rx="6" ry="11" fill="#F4C430" transform="rotate(135 30 30) translate(0 -16)"/>
+      <!-- Center -->
+      <circle cx="30" cy="30" r="9" fill="#1E1E1E"/>
+      <circle cx="30" cy="30" r="3" fill="#F4C430"/>
+      <!-- Circuit lines -->
+      <line x1="30" y1="39" x2="30" y2="50" stroke="#1E1E1E" stroke-width="1.5"/>
+      <line x1="30" y1="46" x2="22" y2="50" stroke="#1E1E1E" stroke-width="1.5"/>
+      <line x1="30" y1="46" x2="38" y2="50" stroke="#1E1E1E" stroke-width="1.5"/>
+      <circle cx="22" cy="50" r="2" fill="none" stroke="#1E1E1E" stroke-width="1.5"/>
+      <circle cx="38" cy="50" r="2" fill="none" stroke="#1E1E1E" stroke-width="1.5"/>
+    </svg>
+    <span class="nav-logo-text">SUNHAUS <span>& CO</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <p class="hero-label">Agencia de tecnología y crecimiento</p>
+    <h1>Tecnología que hace <em>crecer</em> tu negocio</h1>
+    <p class="hero-sub">Combinamos consultoría estratégica, desarrollo de software y marketing digital para llevar tu empresa al siguiente nivel.</p>
+    <div class="hero-actions">
+      <a href="#contacto" class="btn-primary">Empecemos →</a>
+      <a href="#servicios" class="btn-ghost">Ver servicios ↓</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <!-- SVG logo hero -->
+    <svg class="logo-hero" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Large petals -->
+      <ellipse cx="200" cy="70" rx="38" ry="72" fill="#F4C430"/>
+      <ellipse cx="200" cy="70" rx="38" ry="72" fill="#F4C430" transform="rotate(45 200 200)"/>
+      <ellipse cx="200" cy="70" rx="38" ry="72" fill="#F4C430" transform="rotate(90 200 200)"/>
+      <ellipse cx="200" cy="70" rx="38" ry="72" fill="#F4C430" transform="rotate(135 200 200)"/>
+      <ellipse cx="200" cy="70" rx="38" ry="72" fill="#EAB820" transform="rotate(22.5 200 200)"/>
+      <ellipse cx="200" cy="70" rx="38" ry="72" fill="#EAB820" transform="rotate(67.5 200 200)"/>
+      <ellipse cx="200" cy="70" rx="38" ry="72" fill="#EAB820" transform="rotate(112.5 200 200)"/>
+      <ellipse cx="200" cy="70" rx="38" ry="72" fill="#EAB820" transform="rotate(157.5 200 200)"/>
+      <!-- Center disk -->
+      <circle cx="200" cy="200" r="58" fill="#1E1E1E"/>
+      <circle cx="200" cy="200" r="18" fill="#F4C430"/>
+      <!-- Circuit trunk -->
+      <line x1="200" y1="258" x2="200" y2="330" stroke="#1E1E1E" stroke-width="4"/>
+      <!-- Left branches -->
+      <line x1="200" y1="290" x2="150" y2="310" stroke="#1E1E1E" stroke-width="3"/>
+      <line x1="150" y1="310" x2="120" y2="330" stroke="#1E1E1E" stroke-width="2"/>
+      <line x1="150" y1="310" x2="148" y2="336" stroke="#1E1E1E" stroke-width="2"/>
+      <!-- Right branches -->
+      <line x1="200" y1="280" x2="255" y2="296" stroke="#1E1E1E" stroke-width="3"/>
+      <line x1="255" y1="296" x2="285" y2="316" stroke="#1E1E1E" stroke-width="2"/>
+      <line x1="255" y1="296" x2="260" y2="322" stroke="#1E1E1E" stroke-width="2"/>
+      <!-- Right side circuit from center -->
+      <line x1="258" y1="200" x2="310" y2="200" stroke="#1E1E1E" stroke-width="3"/>
+      <line x1="310" y1="200" x2="330" y2="180" stroke="#1E1E1E" stroke-width="2"/>
+      <line x1="310" y1="200" x2="330" y2="210" stroke="#1E1E1E" stroke-width="2"/>
+      <line x1="310" y1="200" x2="332" y2="198" stroke="#1E1E1E" stroke-width="2"/>
+      <!-- Circuit nodes -->
+      <circle cx="120" cy="330" r="6" fill="none" stroke="#1E1E1E" stroke-width="2.5"/>
+      <circle cx="148" cy="336" r="6" fill="none" stroke="#1E1E1E" stroke-width="2.5"/>
+      <circle cx="200" cy="330" r="6" fill="none" stroke="#1E1E1E" stroke-width="2.5"/>
+      <circle cx="285" cy="316" r="6" fill="none" stroke="#1E1E1E" stroke-width="2.5"/>
+      <circle cx="260" cy="322" r="6" fill="none" stroke="#1E1E1E" stroke-width="2.5"/>
+      <circle cx="330" cy="180" r="6" fill="none" stroke="#1E1E1E" stroke-width="2.5"/>
+      <circle cx="330" cy="210" r="6" fill="none" stroke="#1E1E1E" stroke-width="2.5"/>
+      <circle cx="332" cy="198" r="6" fill="none" stroke="#1E1E1E" stroke-width="2.5"/>
+    </svg>
+  
+  <!--logo 2-->
+  <svg class="logo-hero" xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Sunhaus &amp; Co geometric sunflower technology logo</title>
+  <desc id="desc">A geometric sunflower combined with circuit-tree branches above the Sunhaus &amp; Co wordmark.</desc>
+  <defs>
+    <style>
+      :root {
+        --sun: #f4c430;
+        --ink: #1e1e1e;
+        --paper: #f5f2ec;
+        --graphite: #6b6b6b;
+      }
+
+      .petal { fill: #f4c430; stroke: #f5f2ec; stroke-width: 8; stroke-linejoin: round; }
+      .circuit { fill: none; stroke: #1e1e1e; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+      .node { fill: #f5f2ec; stroke: #1e1e1e; stroke-width: 6; }
+      .node-small { fill: #f5f2ec; stroke: #1e1e1e; stroke-width: 5; }
+      .wordmark { font-family: "Montserrat", "Poppins", "Avenir Next", Arial, sans-serif; font-size: 56px; font-weight: 400; letter-spacing: 16px; fill: #1e1e1e; }
+      .amp { fill: #f4c430; letter-spacing: 8px; }
+      .tagline { font-family: "Montserrat", "Poppins", "Avenir Next", Arial, sans-serif; font-size: 19px; font-weight: 500; letter-spacing: 10px; fill: #1e1e1e; }
+    </style>
+  </defs>
+
+  <g transform="translate(600 310)">
+    <g id="flower-half">
+      <path class="petal" d="M-25 -58 C-55 -115 -39 -176 0 -215 C39 -176 55 -115 25 -58Z" transform="rotate(-6)"/>
+      <path class="petal" d="M-25 -58 C-55 -115 -39 -176 0 -215 C39 -176 55 -115 25 -58Z" transform="rotate(-31)"/>
+      <path class="petal" d="M-25 -58 C-55 -115 -39 -176 0 -215 C39 -176 55 -115 25 -58Z" transform="rotate(-58)"/>
+      <path class="petal" d="M-25 -58 C-55 -115 -39 -176 0 -215 C39 -176 55 -115 25 -58Z" transform="rotate(-85)"/>
+      <path class="petal" d="M-25 -58 C-55 -115 -39 -176 0 -215 C39 -176 55 -115 25 -58Z" transform="rotate(-113)"/>
+      <path class="petal" d="M-25 -58 C-55 -115 -39 -176 0 -215 C39 -176 55 -115 25 -58Z" transform="rotate(-141)"/>
+      <path class="petal" d="M-25 -58 C-55 -115 -39 -176 0 -215 C39 -176 55 -115 25 -58Z" transform="rotate(-169)"/>
+      <path class="petal" d="M-25 -58 C-55 -115 -39 -176 0 -215 C39 -176 55 -115 25 -58Z" transform="rotate(-198)"/>
+    </g>
+
+    <g id="circuit-tree">
+      <path class="circuit" d="M0 48 L0 230"/>
+      <path class="circuit" d="M-18 48 L-18 150 L-70 202 L-112 202"/>
+      <path class="circuit" d="M0 230 L0 272"/>
+      <path class="circuit" d="M22 48 L22 230 L72 280"/>
+      <path class="circuit" d="M38 38 L38 164 L82 208 L122 208"/>
+      <path class="circuit" d="M48 22 L86 22 L104 4 L178 4"/>
+      <path class="circuit" d="M55 4 L92 -34 L178 -34 L210 -66"/>
+      <path class="circuit" d="M56 -20 L112 -76 L112 -152"/>
+      <path class="circuit" d="M50 42 L110 102 L164 102"/>
+      <path class="circuit" d="M54 -38 L88 -72 L148 -72 L184 -108"/>
+      <path class="circuit" d="M38 -50 L88 -100 L88 -184 L116 -212"/>
+      <path class="circuit" d="M14 -56 L52 -94 L52 -196"/>
+      <path class="circuit" d="M0 -58 L0 -182 L22 -204"/>
+      <path class="circuit" d="M-22 -54 L-22 -150 L-6 -166 L-6 -220"/>
+
+      <circle class="node" cx="-112" cy="202" r="13"/>
+      <circle class="node" cx="0" cy="272" r="13"/>
+      <circle class="node" cx="72" cy="280" r="13"/>
+      <circle class="node" cx="122" cy="208" r="13"/>
+      <circle class="node" cx="178" cy="4" r="13"/>
+      <circle class="node" cx="210" cy="-66" r="13"/>
+      <circle class="node" cx="112" cy="-152" r="13"/>
+      <circle class="node" cx="164" cy="102" r="13"/>
+      <circle class="node" cx="184" cy="-108" r="13"/>
+      <circle class="node-small" cx="116" cy="-212" r="11"/>
+      <circle class="node-small" cx="52" cy="-196" r="11"/>
+      <circle class="node-small" cx="22" cy="-204" r="11"/>
+      <circle class="node-small" cx="-6" cy="-220" r="11"/>
+    </g>
+
+    <circle cx="0" cy="0" r="76" fill="#f5f2ec"/>
+    <circle cx="0" cy="0" r="61" fill="#1e1e1e"/>
+    <circle cx="0" cy="0" r="19" fill="#f4c430"/>
+  </g>
+
+  <g id="wordmark" transform="translate(600 675)" text-anchor="middle">
+    <text class="wordmark" x="0" y="0">SUNHAUS<tspan class="amp" dx="22">&amp;</tspan><tspan dx="22">CO</tspan></text>
+    <text class="tagline" x="0" y="82">TECNOLOGIA QUE HACE CRECER</text>
+  </g>
+</svg>
+
+  
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stat-item">
+    <div class="stat-number">+120</div>
+    <div class="stat-label">Proyectos entregados</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">8+</div>
+    <div class="stat-label">Años de experiencia</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">95%</div>
+    <div class="stat-label">Clientes satisfechos</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">3x</div>
+    <div class="stat-label">ROI promedio</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="servicios">
+  <div class="section-header">
+    <p class="section-tag">Lo que hacemos</p>
+    <h2 class="section-title">Tres pilares, un solo equipo</h2>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 26 26" fill="none">
+          <path d="M13 3L23 8v10l-10 5L3 18V8l10-5z" stroke="#1E1E1E" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M13 3v15M3 8l10 5 10-5" stroke="#1E1E1E" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <h3>Consultoría Estratégica</h3>
+      <p>Analizamos tu negocio, identificamos oportunidades y diseñamos una hoja de ruta tecnológica que realmente funcione.</p>
+      <ul class="service-list">
+        <li>Diagnóstico digital</li>
+        <li>Transformación digital</li>
+        <li>Automatización de procesos</li>
+        <li>Estrategia de datos e IA</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 26 26" fill="none">
+          <rect x="3" y="5" width="20" height="14" rx="1.5" stroke="#1E1E1E" stroke-width="1.8"/>
+          <path d="M9 9l3 3-3 3M13 15h4" stroke="#1E1E1E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 22h8" stroke="#1E1E1E" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Desarrollo de Software</h3>
+      <p>Construimos soluciones a medida: desde aplicaciones web y móviles hasta bots, APIs y sistemas empresariales.</p>
+      <ul class="service-list">
+        <li>Aplicaciones web y móviles</li>
+        <li>Bots y asistentes de ventas</li>
+        <li>Integraciones y APIs</li>
+        <li>Plataformas SaaS</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 26 26" fill="none">
+          <path d="M4 18l6-6 4 4 8-10" stroke="#1E1E1E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="4" cy="18" r="2" fill="#1E1E1E"/>
+          <circle cx="22" cy="8" r="2" fill="#1E1E1E"/>
+        </svg>
+      </div>
+      <h3>Marketing Digital</h3>
+      <p>Creamos estrategias de marketing impulsadas por datos para atraer, convertir y retener a tus clientes ideales.</p>
+      <ul class="service-list">
+        <li>SEO y posicionamiento</li>
+        <li>Publicidad pagada (SEM/Meta)</li>
+        <li>Email marketing y CRM</li>
+        <li>Analítica y conversión</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="proceso">
+  <div class="section-header">
+    <p class="section-tag" style="color: var(--gold);">Cómo trabajamos</p>
+    <h2 class="section-title">De la idea al resultado</h2>
+  </div>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4>Descubrimiento</h4>
+      <p>Escuchamos, analizamos tu contexto y definimos objetivos claros.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4>Estrategia</h4>
+      <p>Diseñamos una solución alineada a tu negocio y tu presupuesto.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4>Ejecución</h4>
+      <p>Desarrollamos e implementamos con agilidad y transparencia.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h4>Crecimiento</h4>
+      <p>Medimos, optimizamos y escalamos para maximizar resultados.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / VALUES -->
+<section class="about" id="nosotros">
+  <div class="about-text">
+    <p class="section-tag">Quiénes somos</p>
+    <h2>Luz, orden y tecnología al servicio de tu empresa</h2>
+    <p>Sunhaus & Co nació de la convicción de que la tecnología debe ser una herramienta de crecimiento real, no un fin en sí mismo. Somos un equipo multidisciplinario que une el rigor técnico con la visión estratégica.</p>
+    <p>Como el girasol que siempre busca la luz, acompañamos a cada cliente hacia su mejor versión digital, con claridad, diseño y propósito.</p>
+  </div>
+  <div class="values-grid">
+    <div class="value-card">
+      <h4>Luz / Energía</h4>
+      <p>Claridad en cada etapa del proceso. Sin letra pequeña ni pasos ocultos.</p>
+    </div>
+    <div class="value-card">
+      <h4>Crecimiento</h4>
+      <p>Todo lo que hacemos apunta a resultados tangibles y medibles para tu negocio.</p>
+    </div>
+    <div class="value-card">
+      <h4>Tecnología</h4>
+      <p>Usamos las herramientas más avanzadas, adaptadas al tamaño y contexto de cada cliente.</p>
+    </div>
+    <div class="value-card">
+      <h4>Orden / Diseño</h4>
+      <p>Procesos estructurados, comunicación precisa y estética Bauhaus en cada entrega.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contacto">
+  <h2>¿Listo para crecer?</h2>
+  <p>Cuéntanos sobre tu proyecto y encontremos juntos la solución que tu negocio necesita.</p>
+  <a href="mailto:hola@sunhausco.com" class="btn-dark">Escribenos ahora →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="footer-logo-text">SUNHAUS <span>& CO</span></span>
+      <p>Tecnología que hace crecer. Consultoría, desarrollo y marketing digital para empresas que quieren avanzar.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Servicios</h5>
+      <a href="#">Consultoría estratégica</a>
+      <a href="#">Desarrollo de software</a>
+      <a href="#">Marketing digital</a>
+      <a href="#">Automatización</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contacto</h5>
+      <a href="mailto:hola@sunhausco.com">hola@sunhausco.com</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Sunhaus & Co. Todos los derechos reservados.</span>
+    <span>Tecnología que hace crecer.</span>
+  </div>
+</footer>
+
+</body>
+</html>
